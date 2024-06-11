@@ -72,6 +72,10 @@ public class IndexController {
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
-    
+
+    @Override
+    public String toString() {
+        return "IndexController{" + "alumnosList=" + alumnosList + ", alumno=" + alumno + ", servicio=" + servicio + '}';
+    }
     
 }

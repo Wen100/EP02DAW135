@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:card style="margin: 2% 5%">
+        <p:menu styleClass="ui-menubar" style="width: auto;">
+            <p:submenu label="Inscripciones Web App" icon="ui-icon ui-icon-refresh">
+                <p:menuitem value="Alumnos" outcome="index" />
+                <p:menuitem value="Materias" outcome="materias" />
+                <p:menuitem value="Inscripciones" outcome="inscripciones" />
+            </p:submenu>
+        </p:menu>
+        </p:card>
+        <p:card style="margin: 2% 5%">
+            <f:facet name="title">
+                Formulario de Inscripciones
+            </f:facet>
+            <f:view>
+                <h:form id="inscripcionesForm">                    
+                    <p:panelGrid columns="4" layout="grid" style="padding: 0rem">
+                            <p:panelGrid columns="1" layout="grid">
+                            <p:outputLabel for="alumno" value="Alumno: " />
+                            <p:selectOneMenu id="alumno" value="#{inscripcionController.alumnoId}"
+                                            panelStyle="width:180px" var="a"
+                                            filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px">
+                                <f:selectItems value="#{alumnoBean.alumnosList}" var="alumno"
+                                                   itemLabel="#{alumno.nombre}" itemValue="#{alumno.id}"/>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nombre"/>
+                                        </f:facet>
+                                        <h:outputText value="#{a.nombre}"/>
+                                    </p:column>
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                            <p:panelGrid columns="1" layout="grid">
+                            <p:outputLabel for="materia" value="Materia: " />
+                            <p:selectOneMenu id="materia" value="#{inscripcionController.materiaId}"
+                                                panelStyle="width:180px" var="m"
+                                                filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px">
+                                <f:selectItems value="#{materiaBean.materiasList}" var="materia"
+                                                   itemLabel="#{materia.nombre}" itemValue="#{materia.id}"/>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Titulo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{m.nombre}"/>
+                                    </p:column>
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                            <p:panelGrid columns="1" layout="grid">
+                                <p:outputLabel for="anio" value="Año:" />
+                                <p:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" />
+                            </p:panelGrid>
+                            <p:panelGrid columns="1" layout="grid">
+                                <p:outputLabel for="ciclo" value="Ciclo: " />
+                                <p:inputText id="ciclo" value="#{inscripcionController.inscripcion.ciclo}" />
+                            </p:panelGrid>
+                            <p:panelGrid columns="2" layout="grid">
+                                <p:commandButton value="Guardar" actionListener="#{inscripcionController.guardarInscripcion()}" update="tablaInscripciones inscripcionesForm" 
+                                                 style="background-color: mediumseagreen; color: white; border-color: gray"/>
+                            </p:panelGrid>
+                        </p:panelGrid>
+                    
+                    
+                </h:form>
+            </f:view>
+        </p:card>
+
+        <p:card style="margin: 2% 5%">
+            <f:facet name="title">
+                Listado de Inscripciones
+            </f:facet>
+            <h:form id="tablaInscripciones">
+                <p:dataTable rows="5" paginator="true" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                             
+                             value="#{inscripcionController.inscripcionesList}" var="inscripcion">
+                    <p:column>
+                        <f:facet name="header"># </f:facet>
+                        <samp>#{inscripcion.id}</samp>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Alumno </f:facet>
+                        <samp>#{inscripcion.alumno.nombre}</samp>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Materia </f:facet>
+                        <samp>#{inscripcion.materia.nombre}</samp>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Año </f:facet>
+                        <samp>#{inscripcion.anio}</samp>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ciclo </f:facet>
+                        <samp>#{inscripcion.ciclo}</samp>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Fecha </f:facet>
+                        <h:outputText id="lblfecha" value="#{inscripcion.fecha}">
+                            <f:convertDateTime timeZone="America/El_Salvador"  pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Opciones </f:facet>
+                        <p:commandButton value="Eliminar" icon="pi pi-trash" 
+                                         style="background-color: crimson; color: white; border-color: gray" action="#{inscripcionController.eliminarInscripcion(inscripcion)}" update="tablaInscripciones" >
+                            <p:confirm header="Confirmar" message="Desea eliminar la inscripcion ##{inscripcion.id}?" icon="pi pi-info-circle"  />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                
+                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" />
+                </p:confirmDialog>
+            </h:form>
+        </p:card>
+       
+    </h:body>
+</html>

@@ -23,22 +23,19 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name="alumno")
-public class Alumno implements Serializable{
+@Table(name="materia")
+public class Materia implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alumno_id_seq")
-    @SequenceGenerator(name="alumno_id_seq", sequenceName="alumno_id_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "materia_id_seq")
+    @SequenceGenerator(name="materia_id_seq", sequenceName="materia_id_seq", allocationSize=1)
     @Column(name="id")
     private Integer id;
     
     @Column(name="nombre")
     private String nombre;
     
-    @Column(name="carnet")
-    private String carnet;
-    
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
 
     public Integer getId() {
@@ -57,18 +54,9 @@ public class Alumno implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getCarnet() {
-        return carnet;
-    }
-
-    public void setCarnet(String carnet) {
-        this.carnet = carnet;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -83,32 +71,25 @@ public class Alumno implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Alumno other = (Alumno) obj;
+        final Materia other = (Materia) obj;
         return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", carnet=" + carnet + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + '}';
     }
 
-    public Alumno(Integer id) {
+    public Materia(Integer id) {
         this.id = id;
     }
 
-    public Alumno(Integer id, String nombre, String carnet) {
+    public Materia(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.carnet = carnet;
     }
-    
-    public Alumno() {
-        
-    }
-    
-    public Alumno(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+
+    public Materia() {
     }
 
     public List<Inscripcion> getInscripciones() {
@@ -118,7 +99,5 @@ public class Alumno implements Serializable{
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
-    
-    
     
 }
