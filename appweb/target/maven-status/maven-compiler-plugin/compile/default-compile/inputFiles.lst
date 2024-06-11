@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-/home/wendy/git/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/resources/Recurso.java
-/home/wendy/git/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/negocio/DataService.java
-/home/wendy/git/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/resources/App.java
-/home/wendy/git/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/entidades/Alumno.java
-/home/wendy/git/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/controladores/IndexController.java
-=======
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/entidades/materiaBean.java
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/controladores/InscripcionController.java
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/resources/Recurso.java
@@ -16,4 +9,3 @@
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/controladores/MateriaController.java
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/entidades/Alumno.java
 /home/josue/NetBeansProjects/EP02DAW135/appweb/src/main/java/com/ep2daw/appweb/entidades/alumnoBean.java
->>>>>>> dev

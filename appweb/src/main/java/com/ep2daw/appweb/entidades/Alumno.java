@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name="alumnos")
+@Table(name="alumno")
 public class Alumno implements Serializable{
     
     @Id
@@ -41,10 +41,7 @@ public class Alumno implements Serializable{
     
     @Column(name="carnet")
     private String carnet;
-    //Agregado
-    @Column(name="carrera")
-    private String carrera;
-    
+
     //Set y Get
     
     @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
@@ -82,14 +79,6 @@ public class Alumno implements Serializable{
         this.carnet = carnet;
     }
 
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
     //Override
 
     @Override
@@ -119,7 +108,7 @@ public class Alumno implements Serializable{
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + ", carrerra=" + carrera + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + '}';
     }
     
     //Constructores
@@ -129,7 +118,6 @@ public class Alumno implements Serializable{
         this.nombre = nombre;
         this.apellido = apellido;
         this.carnet = carnet;
-        this.carrera = carrera;
     }
 
     public Alumno(Integer id) {
