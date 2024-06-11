@@ -9,7 +9,7 @@
         
         <property
             name="jakarta.persistence.schema-generation.database.action"
-            value="drop-and-create" />
+            value="create" />
         </properties>
     </persistence-unit>
 </persistence>
