@@ -27,7 +27,7 @@ public class DataService{
     
     public List<Alumno> getAlumnos(){
         
-        Query query = entityManager.createQuery("SELECT e FROM Alumno e ORDER BY e.id DESC");
+        Query query = entityManager.createQuery("SELECT e FROM Alumno e ORDER BY e.id ASC");
         
         List<Alumno> alumnos = query.getResultList();
         
@@ -60,7 +60,7 @@ public class DataService{
     
     public List<Materia> getMaterias(){
         
-        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id DESC");
+        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
         
         List<Materia> materia = query.getResultList();
         
@@ -93,7 +93,7 @@ public class DataService{
     
     public List<Inscripcion> getInscripciones(){
         
-        Query query = entityManager.createQuery("SELECT i FROM Inscripcion i ORDER BY i.id DESC");
+        Query query = entityManager.createQuery("SELECT i FROM Inscripcion i ORDER BY i.id ASC");
         
         List<Inscripcion> inscripcion = query.getResultList();
         
