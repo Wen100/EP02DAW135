@@ -11,8 +11,8 @@
         <p:card style="margin: 2% 5%">
         <p:menu styleClass="ui-menubar" style="width: auto;">
             <p:submenu label="Inscripciones Web App" icon="ui-icon ui-icon-refresh">
-                <p:menuitem value="Alumnos" outcome="index" />
-                <p:menuitem value="Materias" outcome="materias" />
+                <p:menuitem value="Alumnos" outcome="alumnos" />
+                <p:menuitem value="Materias" outcome="materias" style="border: 1px solid gray"/>
                 <p:menuitem value="Inscripciones" outcome="inscripciones" />
             </p:submenu>
         </p:menu>
@@ -28,9 +28,18 @@
                     <p:panelGrid columns="4" layout="grid" style="padding: 0rem">                        
 
                         <p:panelGrid columns="1" layout="grid">
-                            <p:outputLabel value="Nombre:" />
-                            <p:inputText id="nombre" value="#{materiaController.materia.nombre}" />
-
+                            <p:outputLabel for="nombre" value="Nombre:" />
+                            <p:inputText id="nombre" value="#{materiaController.materia.nombre}" required="true" maxlength="50" placeholder="Nombre de la materia..."/>
+                        </p:panelGrid>
+                        
+                        <p:panelGrid columns="1" layout="grid">
+                            <p:outputLabel for="codigo" value="Codigo" />
+                            <p:inputText id="codigo" value="#{materiaController.materia.codigo}" required="true" maxlength="10" placeholder="Codigo de la materia..."/>
+                        </p:panelGrid>
+                        
+                        <p:panelGrid columns="1" layout="grid">
+                            <p:outputLabel for="descripcion" value="Descripcion" />
+                            <p:inputTextarea id="descripcion" value="#{materiaController.materia.descripcion}" required="true" maxlength="100" placeholder="Ingrese una descripción..." rows="2" cols="40"/>
                         </p:panelGrid>
                         
                         
@@ -39,8 +48,8 @@
                     <p:panelGrid columns="4" layout="grid" style="padding: 0rem"> 
                     
                         <p:panelGrid columns="1" layout="grid">
-                            <p:commandButton value="Guardar" actionListener="#{materiaController.guardarMateria}" update="tablaMaterias materiasForm" 
-                                             style="background-color: mediumseagreen; color: white; border-color: gray"/>
+                            <p:commandButton value="Guardar" icon="pi pi-save" actionListener="#{materiaController.guardarMateria}" update="tablaMaterias materiasForm" 
+                                             style="background-color: mediumseagreen; color: white; border-color: gray; width: 125px" />
                         </p:panelGrid>
                         
                     </p:panelGrid>
@@ -59,21 +68,29 @@
                              rowsPerPageTemplate="5,10,{ShowAll|'All'}"
                              
                              value="#{materiaController.materiasList}" var="materia">
-                    <p:column>
+                    <p:column colspan="1">
                         <f:facet name="header">ID</f:facet>
                         <samp>#{materia.id}</samp>
                     </p:column>
-                    <p:column>
+                    <p:column colspan="2">
                         <f:facet name="header">Nombre </f:facet>
                         <samp>#{materia.nombre}</samp>
                     </p:column>
-                    <p:column>
+                    <p:column colspan="1">
+                        <f:facet name="header">Codigo </f:facet>
+                        <samp>#{materia.codigo}</samp>
+                    </p:column>
+                    <p:column colspan="2">
+                        <f:facet name="header">Descripcion </f:facet>
+                        <samp>#{materia.descripcion}</samp>
+                    </p:column>
+                    <p:column colspan="1">
                         <f:facet name="header">Opciones </f:facet>
                         <p:commandButton value="Editar" icon="pi pi-pencil" 
-                                         style="background-color: cadetblue; color: white; border-color: gray" actionListener="#{materiaController.llenarFormEditar(materia)}" update="materiasForm" />
-                        <p:spacer width="10" />
+                                         style="background-color: cadetblue; color: white; border-color: gray; margin: 5px; width: 125px" actionListener="#{materiaController.llenarFormEditar(materia)}" update="materiasForm" />
+                        
                         <p:commandButton value="Eliminar" icon="pi pi-trash" 
-                                         style="background-color: crimson; color: white; border-color: gray" action="#{materiaController.eliminarMateria(materia)}" update="tablaMaterias" >
+                                         style="background-color: crimson; color: white; border-color: gray; margin: 5px; width: 125px" action="#{materiaController.eliminarMateria(materia)}" update="tablaMaterias" >
                             <p:confirm header="Confirmar" message="Desea eliminar la materia #{materia.nombre}?" icon="pi pi-info-circle" />
                         </p:commandButton>
                     </p:column>

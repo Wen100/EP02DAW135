@@ -20,7 +20,7 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class IndexController {
+public class AlumnoController {
     
     private List<Alumno> alumnosList = new ArrayList<>();
     
@@ -47,7 +47,9 @@ public class IndexController {
     public void llenarFormEditar(Alumno alumno){
         this.alumno.setId(alumno.getId());
         this.alumno.setNombre(alumno.getNombre());
+        this.alumno.setApellido(alumno.getApellido());
         this.alumno.setCarnet(alumno.getCarnet());
+        this.alumno.setCarrera(alumno.getCarrera());
     }
     
     public void eliminarAlumno(Alumno alumno){
@@ -73,9 +75,5 @@ public class IndexController {
         this.alumno = alumno;
     }
 
-    @Override
-    public String toString() {
-        return "IndexController{" + "alumnosList=" + alumnosList + ", alumno=" + alumno + ", servicio=" + servicio + '}';
-    }
     
 }

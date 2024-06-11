@@ -41,7 +41,10 @@ public class Alumno implements Serializable{
     
     @Column(name="carnet")
     private String carnet;
-
+    
+    @Column(name="carrera")
+    private String carrera;
+    
     //Set y Get
     
     @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
@@ -79,6 +82,15 @@ public class Alumno implements Serializable{
         this.carnet = carnet;
     }
 
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+    
+    
     //Override
 
     @Override
@@ -104,11 +116,10 @@ public class Alumno implements Serializable{
     }
     
     //Metodo to String
-    
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + ", carrera=" + carrera + ", inscripciones=" + inscripciones + '}';
     }
     
     //Constructores
@@ -118,6 +129,12 @@ public class Alumno implements Serializable{
         this.nombre = nombre;
         this.apellido = apellido;
         this.carnet = carnet;
+    }
+
+    public Alumno(Integer id, String nombre, String apellido) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public Alumno(Integer id) {
@@ -132,6 +149,8 @@ public class Alumno implements Serializable{
         this.id = id;
         this.nombre = nombre;
     }
+    
+    
 
     public List<Inscripcion> getInscripciones() {
         return inscripciones;

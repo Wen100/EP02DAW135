@@ -47,6 +47,8 @@ public class MateriaController {
     public void llenarFormEditar(Materia materia){
         this.materia.setId(materia.getId());
         this.materia.setNombre(materia.getNombre());
+        this.materia.setCodigo(materia.getCodigo());
+        this.materia.setDescripcion(materia.getDescripcion());
     }
     
     public void eliminarMateria(Materia materia){

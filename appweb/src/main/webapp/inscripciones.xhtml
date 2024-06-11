@@ -11,9 +11,9 @@
         <p:card style="margin: 2% 5%">
         <p:menu styleClass="ui-menubar" style="width: auto;">
             <p:submenu label="Inscripciones Web App" icon="ui-icon ui-icon-refresh">
-                <p:menuitem value="Alumnos" outcome="index" />
+                <p:menuitem value="Alumnos" outcome="alumnos" />
                 <p:menuitem value="Materias" outcome="materias" />
-                <p:menuitem value="Inscripciones" outcome="inscripciones" />
+                <p:menuitem value="Inscripciones" outcome="inscripciones" style="border: 1px solid gray" />
             </p:submenu>
         </p:menu>
         </p:card>
@@ -28,43 +28,34 @@
                             <p:outputLabel for="alumno" value="Alumno: " />
                             <p:selectOneMenu id="alumno" value="#{inscripcionController.alumnoId}"
                                             panelStyle="width:180px" var="a"
-                                            filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px">
+                                            filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px" required="true" >
+                                <f:selectItem itemLabel="Seleccione un alumno..." noSelectionOption="true"/>
                                 <f:selectItems value="#{alumnoBean.alumnosList}" var="alumno"
-                                                   itemLabel="#{alumno.nombre}" itemValue="#{alumno.id}"/>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Nombre"/>
-                                        </f:facet>
-                                        <h:outputText value="#{a.nombre}"/>
-                                    </p:column>
+                                                   itemLabel="#{alumno.nombre} #{alumno.apellido} - #{alumno.carnet}" itemValue="#{alumno.id}"/>
+                                    
                                 </p:selectOneMenu>
                             </p:panelGrid>
                             <p:panelGrid columns="1" layout="grid">
                             <p:outputLabel for="materia" value="Materia: " />
                             <p:selectOneMenu id="materia" value="#{inscripcionController.materiaId}"
                                                 panelStyle="width:180px" var="m"
-                                                filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px">
+                                                filter="true" filterMatchMode="startsWith" filterNormalize="true" style="width: 250px" required="true">
+                                <f:selectItem itemLabel="Seleccione una materia..." noSelectionOption="true"/>
                                 <f:selectItems value="#{materiaBean.materiasList}" var="materia"
                                                    itemLabel="#{materia.nombre}" itemValue="#{materia.id}"/>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Titulo"/>
-                                        </f:facet>
-                                        <h:outputText value="#{m.nombre}"/>
-                                    </p:column>
                                 </p:selectOneMenu>
                             </p:panelGrid>
                             <p:panelGrid columns="1" layout="grid">
                                 <p:outputLabel for="anio" value="Año:" />
-                                <p:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" />
+                                <p:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" required="true" type="number" maxlength="4" placeholder="0000"/>
                             </p:panelGrid>
                             <p:panelGrid columns="1" layout="grid">
                                 <p:outputLabel for="ciclo" value="Ciclo: " />
-                                <p:inputText id="ciclo" value="#{inscripcionController.inscripcion.ciclo}" />
+                                <p:inputText id="ciclo" value="#{inscripcionController.inscripcion.ciclo}" required="true" maxlength="10" placeholder="Ciclo a inscribir..."/>
                             </p:panelGrid>
                             <p:panelGrid columns="2" layout="grid">
-                                <p:commandButton value="Guardar" actionListener="#{inscripcionController.guardarInscripcion()}" update="tablaInscripciones inscripcionesForm" 
-                                                 style="background-color: mediumseagreen; color: white; border-color: gray"/>
+                                <p:commandButton value="Guardar" icon="pi pi-save" actionListener="#{inscripcionController.guardarInscripcion()}" update="tablaInscripciones inscripcionesForm" 
+                                                 style="background-color: mediumseagreen; color: white; border-color: gray; width: 125px" />
                             </p:panelGrid>
                         </p:panelGrid>
                     
@@ -90,7 +81,7 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">Alumno </f:facet>
-                        <samp>#{inscripcion.alumno.nombre}</samp>
+                        <samp>#{inscripcion.alumno.nombre} #{inscripcion.alumno.apellido}</samp>
                     </p:column>
                     <p:column>
                         <f:facet name="header">Materia </f:facet>
@@ -113,7 +104,7 @@
                     <p:column>
                         <f:facet name="header">Opciones </f:facet>
                         <p:commandButton value="Eliminar" icon="pi pi-trash" 
-                                         style="background-color: crimson; color: white; border-color: gray" action="#{inscripcionController.eliminarInscripcion(inscripcion)}" update="tablaInscripciones" >
+                                         style="background-color: crimson; color: white; border-color: gray; width: 125px" action="#{inscripcionController.eliminarInscripcion(inscripcion)}" update="tablaInscripciones" >
                             <p:confirm header="Confirmar" message="Desea eliminar la inscripcion ##{inscripcion.id}?" icon="pi pi-info-circle"  />
                         </p:commandButton>
                     </p:column>

@@ -4,11 +4,11 @@
  */
 package com.ep2daw.appweb.entidades;
 
+import com.ep2daw.appweb.entidades.Materia;
 import com.ep2daw.appweb.negocio.DataService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +25,10 @@ public class materiaBean implements Serializable{
     
     private Integer id;
     private String nombre;
+    private String descripcion;
+    private String codigo;
     private String materiaId;
+    
     @EJB 
     DataService servicio;
     
@@ -52,6 +55,22 @@ public class materiaBean implements Serializable{
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public String getMateriaId() {
         return materiaId;
     }
@@ -99,7 +118,7 @@ public class materiaBean implements Serializable{
 
     @Override
     public String toString() {
-        return "materiaBeam{" + "id=" + id + ", nombre=" + nombre + ", materiaId=" + materiaId + '}';
+        return "materiaBean{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo=" + codigo + ", materiaId=" + materiaId + '}';
     }
-    
+
 }

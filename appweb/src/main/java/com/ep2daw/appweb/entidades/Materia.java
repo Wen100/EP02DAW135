@@ -35,6 +35,12 @@ public class Materia implements Serializable{
     @Column(name="nombre")
     private String nombre;
     
+    @Column(name="descripcion")
+    private String descripcion;
+    
+    @Column(name="codigo")
+    private String codigo;
+    
     @OneToMany(mappedBy = "materia", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
 
@@ -54,6 +60,23 @@ public class Materia implements Serializable{
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -77,8 +100,8 @@ public class Materia implements Serializable{
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id + ", nombre=" + nombre + '}';
-    }
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo=" + codigo + '}';
+    }  
 
     public Materia(Integer id) {
         this.id = id;
@@ -87,6 +110,13 @@ public class Materia implements Serializable{
     public Materia(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public Materia(Integer id, String nombre, String descripcion, String codigo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.codigo = codigo;
     }
 
     public Materia() {
