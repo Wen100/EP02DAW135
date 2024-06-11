@@ -20,20 +20,29 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name="alumno")
+@Table(name="alumnos")
 public class Alumno implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alumno_id_seq")
-    @SequenceGenerator(name="alumno_id_seq", sequenceName="alumno_id_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alumnos_id_seq")
+    @SequenceGenerator(name="alumnos_id_seq", sequenceName="alumnos_id_seq", allocationSize=1)
+    //Variables
     @Column(name="id")
     private Integer id;
     
     @Column(name="nombre")
     private String nombre;
+    //Agregado
+    @Column(name="apellido")
+    private String apellido;
     
     @Column(name="carnet")
     private String carnet;
+    //Agregado
+    @Column(name="carrera")
+    private String carrera;
+    
+    //Set y Get
 
     public Integer getId() {
         return id;
@@ -51,6 +60,14 @@ public class Alumno implements Serializable{
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public String getCarnet() {
         return carnet;
     }
@@ -58,6 +75,16 @@ public class Alumno implements Serializable{
     public void setCarnet(String carnet) {
         this.carnet = carnet;
     }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    //Override
 
     @Override
     public int hashCode() {
@@ -80,29 +107,33 @@ public class Alumno implements Serializable{
         final Alumno other = (Alumno) obj;
         return Objects.equals(this.id, other.id);
     }
+    
+    //Metodo to String
+    
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", carnet=" + carnet + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + ", carrerra=" + carrera + '}';
+    }
+    
+    //Constructores
+
+    public Alumno(Integer id, String nombre, String apellido, String carnet, String carrera) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.carnet = carnet;
+        this.carrera = carrera;
     }
 
     public Alumno(Integer id) {
         this.id = id;
     }
-
-    public Alumno(Integer id, String nombre, String carnet) {
-        this.id = id;
-        this.nombre = nombre;
-        this.carnet = carnet;
-    }
     
     public Alumno() {
         
     }
+
     
-    public Alumno(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
     
 }
