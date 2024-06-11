@@ -1,5 +1,11 @@
 com/ep2daw/appweb/negocio/DataService.class
 com/ep2daw/appweb/controladores/IndexController.class
-com/ep2daw/appweb/entidades/Alumno.class
+com/ep2daw/appweb/controladores/InscripcionController.class
 com/ep2daw/appweb/resources/App.class
 com/ep2daw/appweb/resources/Recurso.class
+com/ep2daw/appweb/entidades/Inscripcion.class
+com/ep2daw/appweb/entidades/Materia.class
+com/ep2daw/appweb/controladores/MateriaController.class
+com/ep2daw/appweb/entidades/Alumno.class
+com/ep2daw/appweb/entidades/alumnoBean.class
+com/ep2daw/appweb/entidades/materiaBean.class

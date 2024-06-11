@@ -23,31 +23,19 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name="alumnos")
-public class Alumno implements Serializable{
+@Table(name="materia")
+public class Materia implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alumnos_id_seq")
-    @SequenceGenerator(name="alumnos_id_seq", sequenceName="alumnos_id_seq", allocationSize=1)
-    //Variables
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "materia_id_seq")
+    @SequenceGenerator(name="materia_id_seq", sequenceName="materia_id_seq", allocationSize=1)
     @Column(name="id")
     private Integer id;
     
     @Column(name="nombre")
     private String nombre;
-    //Agregado
-    @Column(name="apellido")
-    private String apellido;
     
-    @Column(name="carnet")
-    private String carnet;
-    //Agregado
-    @Column(name="carrera")
-    private String carrera;
-    
-    //Set y Get
-    
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
 
     public Integer getId() {
@@ -66,36 +54,9 @@ public class Alumno implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCarnet() {
-        return carnet;
-    }
-
-    public void setCarnet(String carnet) {
-        this.carnet = carnet;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
-    //Override
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -110,39 +71,25 @@ public class Alumno implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Alumno other = (Alumno) obj;
+        final Materia other = (Materia) obj;
         return Objects.equals(this.id, other.id);
     }
-    
-    //Metodo to String
-    
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", carnet=" + carnet + ", carrerra=" + carrera + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    //Constructores
 
-    public Alumno(Integer id, String nombre, String apellido, String carnet, String carrera) {
+    public Materia(Integer id) {
+        this.id = id;
+    }
+
+    public Materia(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.carnet = carnet;
-        this.carrera = carrera;
     }
 
-    public Alumno(Integer id) {
-        this.id = id;
-    }
-    
-    public Alumno() {
-        
-    }
-
-    public Alumno(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public Materia() {
     }
 
     public List<Inscripcion> getInscripciones() {
