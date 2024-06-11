@@ -5,6 +5,7 @@ nbbuild/
 dist/
 nbdist/
 nbactions.xml
+target/
 nb-configuration.xml
 
 # Class Files #
